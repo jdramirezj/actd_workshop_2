@@ -1,0 +1,31 @@
+# This code extracts the required data from yahoo finance
+
+# Define a function that downloads the desired financial variables price data
+
+def yf_download(assets_yf,start_date,end_date,price_type):
+  
+  '''
+  assets_yf: List of the tickers of the assets of the portfolio for yfinance
+  start_date: First date to download
+  end_date: Last date to download
+  price_type: It could be "Adj Close", "Close", "High", "Low", "Open" or "Volume"
+
+  '''
+
+  # Import the required Yahoo Finance package for downloading the data
+  import yfinance as yf
+
+  # Download the data
+  prices_data = yf.download(tickers=assets_yf,
+                            start=start_date,
+                            end=end_date)
+  
+  # Get the desired price type
+  prices_data = prices_data[price_type]
+
+  # Return the final dataframe with the prices
+  return prices_data
+
+
+
+
